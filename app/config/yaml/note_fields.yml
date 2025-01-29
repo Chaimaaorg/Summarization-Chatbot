@@ -1,0 +1,532 @@
+comment_generation_tools:
+  faits_marquants_comment_generation_tool:
+    analysis_name: "registre du commerce"
+    table_name: "identification_societe"
+    questions: >
+      - Quelle est la forme juridique de l'entreprise ?
+      - Quelle est sa date de création ?
+      - Où se trouve le siège social de l'entreprise ?
+      - Quel est le montant de son capital social ?
+      - Qui sont les actionnaires de l'entreprise et quelle est la répartition de leurs parts ? (données internes et données inforisk)
+      Si tu n'as pas les données pour y répondre, ne réponds pas.
+      N'invente rien, base-toi uniquement sur les données fournies.
+      En revanche mets bien dans la partie Questions supplémentaires toutes les informations qu'il te manque pour répondre aux questions. Exemple: tu n'as pas le siège social de l'entreprise, demande le et explique pourquoi tu en as besoin.
+      Si tu as des données inforisk, précise synthétiquement:
+      - Le nom des dirigeants, leur fonction et leur date d'entree en poste respectives de inforisk pour comparaison
+      - le nom des associés et leurs parts respectives de inforisk pour comparaison
+      - le nom des tiers de inforisk pour comparaison
+      Pour chacune des données précise si la source des données est Inforisk ou données internes.
+      Tu formatteras le capital social de la manière suivante : 1 000 000 MAD (si l'unite est en MAD) ou 1 000 kDH (si l'unite est en kDH)
+      Si tu n'as pas les données inforisk, ajoute les questions dans la partie questions supplémentaires et ne mentionnes rien ici.
+    structure_output: >
+      La structure de la réponse est en deux grandes parties:
+      - Analyse : Veuillez créer un phrase Pour chaque question à laquelle vous avez la réponse en vous appuyant sur les résultats intermédiaires et les documents extraits du dossier client. Si vous n'avez pas la réponse, ne créez pas de phrase.
+                  Vous ne devez pas reprendre les documents déjà fournis, mais uniquement répondre à la question.
+                  Répondez à la question si et seulement si vous avez les données pour y répondre, sinon ne mentionne rien dans la partie Analyse. En revanche, mentionnez les données manquantes dans la partie Questions supplémentaires.
+      - Questions supplémentaires : En dernier, vous fournirez des questions en plus à poser à votre collègue banquier afin de compléter les faits marquants de la société, si celle-ci manque d'informations pour répondre aux questions. Citez les données qui manquent pour répondre aux questions.  Ne demandes jamais les données sectorielles.
+                  Le format de la réponse doit être sous forme d'un markdown.
+                  Les titres Analyse et Questions supplémentaires doivent être formatté de la manière suivante : #Analyse et #Questions supplémentaires.
+  caracteristiques_secteur_activite_comment_generation_tool:
+    analysis_name: "registre du commerce"
+    table_name: "identification_societe"
+    questions: >
+      - Quel est le secteur d'activité de l'entreprise ?
+      - Quelle est la position de l'entreprise dans le marché (leader, Top 3, Top 5)
+      - Quels sont principaux modèles/produits, marques, services commercialisés (ex, modèles de moto C50, meubles de jardin etc.) avec une brève description et % du chiffre d'affaires ?
+      Si tu n'as pas les données pour y répondre, ne réponds pas.
+      Si tu as les données inforisk:
+      - Quel est le secteur d'activité donné par inforisk?
+      - Quels sont les activités de l'entreprise donnés par inforisk?
+    structure_output: >
+      La structure de la réponse est en deux grandes parties:
+      - Analyse : Veuillez créer un phrase Pour chaque question à laquelle vous avez la réponse en vous appuyant sur les résultats intermédiaires et les documents extraits du dossier client. Si vous n'avez pas la réponse, ne créez pas de phrase.
+        Vous ne devez pas reprendre les documents déjà fournis, mais uniquement répondre à la question.
+        Pour les questions auxquelles vous n'avez pas les données pour y répondre, ne créer pas de phrase et ne mentionne rien dans la partie Analyse. En revanche, mentionnez les données manquantes dans la partie Questions supplémentaires.
+      - Questions supplémentaires : En dernier, vous fournirez des questions en plus à poser à votre collègue banquier afin de compléter l'analyse des fournisseurs, si celle-ci manque d'informations pour répondre aux questions. Citez les données qui manquent pour répondre aux questions.  Ne demandes jamais les données sectorielles.
+      Le format de la réponse doit être sous forme d'un markdown.
+      Les titres Analyse et Questions supplémentaires doivent être formatté de la manière suivante : #Analyse et #Questions supplémentaires.
+  principaux_fournisseurs_comment_generation_tool:
+    table_name: identification_societe
+    sub_table_name: fournisseurs
+    questions: >
+      - Quels sont les principaux fournisseurs (compare le total_solde_debit pour chaque fournisseur mais parle de "montant" ne mentionne pas le nom de la variable total_solde_debit et conserve les noms de compte pour lesquels ces totaux sont les plus importants) et précise les totaux des montants (total_cumul_debit) associés à chaque fournisseur ?
+      - Quels sont les fournisseurs locaux vs internationaux ?
+      - Quel est le mode de règlement avec les fournisseurs ? Dans quels délais ?
+      Si tu n'as pas les données pour y répondre, ne réponds pas.
+      N'invente rien, base-toi uniquement sur les données fournies.
+      En revanche mets bien dans la partie Questions supplémentaires toutes les informations qu'il te manque pour y répondre. Exemple: tu n'as pas les différentes catégories de fournisseurs, demande les et explique pourquoi tu en as besoin.
+      Si les données sont manquantes, mentionne-les dans la partie Questions supplémentaires.
+      Tu formatteras les chiffres de la manière suivante : 1 000 kDH (si l'unite est en kDH) ou 1 000 000 MAD (si l'unite est en MAD)
+    structure_output: >
+      La structure de la réponse est en deux grandes parties:
+      - Analyse : Veuillez créer une phrase Pour chaque question à laquelle vous avez la réponse en vous appuyant sur les résultats intermédiaires et les documents extraits du dossier client. Si vous n'avez pas la réponse, ne créez pas de phrase.
+        Vous ne devez pas reprendre les documents déjà fournis, mais uniquement répondre à la question.
+        Pour les questions auxquelles vous n'avez pas les données pour y répondre, ne créer pas de phrase et ne mentionne rien dans la partie Analyse. En revanche, mentionnez les données manquantes dans la partie Questions supplémentaires.
+      - Questions supplémentaires : En dernier, vous fournirez des questions en plus à poser à votre collègue banquier afin de compléter l'analyse des fournisseurs, si celle-ci manque d'informations pour répondre aux questions. Citez les données qui manquent pour répondre aux questions.  Ne demandes jamais les données sectorielles.
+      Le format de la réponse doit être sous forme d'un markdown.
+      Les titres Analyse et Questions supplémentaires doivent être formatté de la manière suivante : #Analyse et #Questions supplémentaires.
+  principaux_clients_comment_generation_tool:
+    table_name: identification_societe
+    sub_table_name: clients
+    questions: >
+      - Quels sont les principaux clients  (compare le total_solde_debit pour chaque client mais parle de "montant" ne mentionne pas le nom de la variable total_solde_debit et conserve les noms de compte pour lesquels ces totaux sont les plus importants) et précise les totaux des montants (total_cumul_debit) associés à chaque client ?
+      - Quels sont les clients internationauxx vs locaux?
+      - Quels sont les clients particuliers ? entreprises?
+        - Pour chaque segment, type : quel est le mode de règlement des achats de produits et services de l'entreprise ? Dans quels délais ?
+      Si tu n'as pas les données pour y répondre, ne réponds pas.
+      N'invente rien, base-toi uniquement sur les données fournies.
+      En revanche mets bien dans la partie Questions supplémentaires toutes les informations qu'il te manque pour y répondre. Exemple: tu n'as pas les différentes catégories des clients, demande les et explique pourquoi tu en as besoin.
+      Si les données sont manquantes, mentionne-les dans la partie Questions supplémentaires.
+      Tu formatteras les chiffres de la manière suivante : 1 000 kDH (si l'unite est en kDH) ou 1 000 000 MAD (si l'unite est en MAD)
+    structure_output: >
+      La structure de la réponse est en deux grandes parties:
+      - Analyse : Veuillez créer une phrase Pour chaque question à laquelle vous avez la réponse en vous appuyant sur les résultats intermédiaires et les documents extraits du dossier client. Si vous n'avez pas la réponse, ne créez pas de phrase.
+        Vous ne devez pas reprendre les documents déjà fournis, mais uniquement répondre à la question.
+        Pour les questions auxquelles vous n'avez pas les données pour y répondre, ne créer pas de phrase et ne mentionne rien dans la partie Analyse. En revanche, mentionnez les données manquantes dans la partie Questions supplémentaires.
+      - Questions supplémentaires : En dernier, vous fournirez des questions en plus à poser à votre collègue banquier afin de compléter l'analyse des fournisseurs, si celle-ci manque d'informations pour répondre aux questions. Citez les données qui manquent pour répondre aux questions.  Ne demandes jamais les données sectorielles.
+      Le format de la réponse doit être sous forme d'un markdown.
+      Les titres Analyse et Questions supplémentaires doivent être formatté de la manière suivante : #Analyse et #Questions supplémentaires.
+  description_moyens_exploitation_comment_generation_tool:
+    analysis_name: "Moyens d'exploitation"
+    questions: >
+      - Locaux et bâtiments : Le client détient-il des locaux d'exploitation ? Si oui, ces locaux sont-ils loués ou possédés ? Quelle est leur superficie totale ? Et quelle est l'adresse complète de ces locaux ?
+      - Équipements et machines :  Le client dispose-t-il d'équipements et de machines spécifiques pour son exploitation ? Si oui, ces équipements sont-ils loués ou possédés ? Quel est le montant du crédit-bail et quelle en est l'échéance ? Quelle est leur nature et leur capacité ? Où sont-ils situés ?
+      - Nombre de collaborateurs
+      - Autres
+      Si tu n'as pas les données pour y répondre, ne réponds pas.
+      N'invente rien, base-toi uniquement sur les données fournies.
+      En revanche mets bien dans la partie Questions supplémentaires toutes les informations qu'il te manque pour y répondre. Exemple: tu n'as pas les locaux du client, demande les et explique pourquoi tu en as besoin.
+      Si les données sont manquantes, mentionne-les dans la partie Questions supplémentaires.
+    structure_output: >
+      La structure de la réponse est en deux grandes parties:
+      - Analyse : Veuillez créer une phrase Pour chaque question à laquelle vous avez la réponse en vous appuyant sur les résultats intermédiaires et les documents extraits du dossier client. Si vous n'avez pas la réponse, ne créez pas de phrase.
+        Vous ne devez pas reprendre les documents déjà fournis, mais uniquement répondre à la question.
+        Pour les questions auxquelles vous n'avez pas les données pour y répondre, ne créer pas de phrase et ne mentionne rien dans la partie Analyse. En revanche, mentionnez les données manquantes dans la partie Questions supplémentaires.
+      - Questions supplémentaires : En dernier, vous fournirez des questions en plus à poser à votre collègue banquier afin de compléter l'analyse, si celle-ci manque d'informations pour répondre aux questions. Citez les données qui manquent pour répondre aux questions.  Ne demandes jamais les données sectorielles.
+      Le format de la réponse doit être sous forme d'un markdown.
+      Les titres Analyse et Questions supplémentaires doivent être formatté de la manière suivante : #Analyse et #Questions supplémentaires.
+  activite_et_rentabilite_comment_generation_tool:
+    use_sector_data: True
+    table_name: "analyse_financiere"
+    sub_table_name: "activite_et_rentabilite"
+    analysis_name: "activité et rentabilité"
+    intermediate_tool_name: "calculation_tool"
+    questions: >
+      - Chiffres d'affaires:
+        - Entre l'année N et N-1, le CA est-il en baisse ? En augmentation ? Est-il stable ? De combien a-t-il évolué ?
+          interpretation: Une augmentation du chiffre d'affaires est un signe de croissance positive, indiquant une amélioration des ventes ou une expansion de l'activité. Une baisse peut signaler des difficultés commerciales, une perte de clients ou un marché plus difficile. La stabilité peut être vue comme neutre.
+        - La variation du chiffre d'affaires de l'année N par rapport à l'année N-1 est-elle cohérente avec la tendance observée au cours des trois dernières années ?
+          interpretation: Une cohérence avec la tendance historique est souvent un signe de stabilité ou de continuité dans la performance de l'entreprise. Une divergence peut indiquer un changement significatif dans le marché ou dans la stratégie de l'entreprise.
+          Pour justifier la hausse :
+          - Y a-t-il eu une augmentation significative des nouveaux clients ou des ventes supplémentaires aux clients existants ? Une diversification/élargissement de l'activité ? Un investissement ?
+            interpretation: Une augmentation du nombre de clients ou des ventes existantes justifie souvent une hausse du CA. La diversification ou des investissements stratégiques peuvent également être des raisons valables.
+          - Quels facteurs externes ou internes ont contribué à cette croissance (ex, lancement de nouveaux produits, expansion géographique, etc.) ?
+            interpretation: L'expansion géographique, l'innovation produit ou d'autres stratégies internes/externes sont souvent des facteurs clés pour justifier la croissance du chiffre d'affaires.
+          Pour justifier la baisse :
+          - Des facteurs externes ont-ils impacté négativement les ventes (comme des conditions économiques défavorables, des changements réglementaires, ou une concurrence accrue) ?
+            interpretation: Des facteurs externes tels que l'économie, la réglementation ou la concurrence peuvent expliquer une baisse du CA. Il est important d'identifier si ces éléments sont temporaires ou structurels.
+          - Quels éléments internes pourraient expliquer cette baisse (ex, problèmes de production, perte de grands clients) ?
+            interpretation: Des problèmes internes, tels que des inefficacités de production ou la perte de clients clés, sont des facteurs critiques pouvant entraîner une baisse des ventes.
+        - Comment se porte l'activité vs. les indicateurs du secteur ? vs. entreprises clientes de AWB dans le même secteur ?
+          interpretation: Comparer la performance au secteur permet de voir si l'entreprise est en phase avec ses concurrents ou si elle est en difficulté. Des écarts importants peuvent justifier une révision de la stratégie.
+        - Quel est le CA prévisionnel pour l'année N+1 ?
+          interpretation: Un CA prévisionnel à la hausse est encourageant et montre des perspectives de croissance. Une prévision à la baisse peut signaler des défis à venir.
+
+      - Frais Financiers/CA:
+        - Les Frais Financiers/CA sont ils faibles, élevés ?
+          interpretation : si l'indicateur est faible en absolu, cela est positif. Même si il y a une grande augmentation, si l'indicateur reste faible c'est positif.
+        - Entre l'année N et N-1, les Frais Financiers/CA est-il en baisse ? En augmentation ? Est-il stable ?
+          interpretation: Une baisse des frais financiers est positive car elle améliore la rentabilité de l'entreprise. Une augmentation indique une pression accrue sur les marges, souvent liée à des emprunts ou à des pertes de change.
+        - Quelle est la valeur du ratio Pertes de change / CA ?
+          interpretation: Un ratio inférieur à 3,5% indique une gestion efficace des risques de change. Un ratio supérieur à 3,5% peut signaler une exposition excessive aux fluctuations monétaires, ce qui peut affecter négativement la rentabilité.
+          Si Ratio inférieur à 3,5% : Impact négligeable/modéré. L'entreprise gère efficacement le risque de change
+          Si Ratio supérieur à 3,5% : Impact significatif. L'entreprise est suffoquée par les pertes de changes doit prendre des mesures pour gérer le risque de change, comme diversifier ses marchés ou renforcer ses stratégies de couverture => Alerte à remonter auprès de la SDM
+        - Comment se porte le ratio vs. celui du secteur ? vs. entreprises clientes de AWB du même secteur ?
+          interpretation: Comparer ce ratio avec celui du secteur permet de savoir si l'entreprise gère efficacement ses frais financiers par rapport à ses concurrents. Un écart significatif peut justifier des actions correctives.
+
+      - Résultat d'exploitation:
+        - Le résultat d'exploitation est-il positif ou négatif ?
+          interpretation: Un résultat d'exploitation positif montre que l'entreprise génère un bénéfice sur ses opérations principales, ce qui est un bon indicateur de performance. Un résultat négatif est préoccupant et peut indiquer des problèmes dans la gestion des coûts.
+        - Entre l'année N et N-1, le Résultat d'exploitation est-il en baisse ? En augmentation ? Est-il stable ? De combien a-t-il évolué ?
+          interpretation: Une augmentation est un signe positif indiquant une meilleure gestion des coûts ou une croissance du CA. Une baisse pourrait signaler un déséquilibre entre les coûts et les revenus.
+        - La variation du Résultat d'exploitation de l'année N par rapport à l'année N-1 est-elle cohérente avec la tendance observée au cours des trois dernières années ?
+          interpretation: Une cohérence avec la tendance historique peut être interprétée comme une gestion stable. Un écart important peut indiquer des difficultés ou des opportunités non anticipées.
+          Pour interpréter résultat d'exploitation positif :
+          - Est-ce que le résultat d'exploitation a suivi la même tendance à la hausse du Chiffres d'affaires ?
+            interpretation: Si la hausse du CA est accompagnée d'une hausse du résultat d'exploitation, cela signifie que l'entreprise parvient à gérer efficacement ses charges et à capitaliser sur ses revenus.
+          - Est-ce que les charges d'exploitations ont baissé ? De combien vs. N-1 ?
+            interpretation: Une réduction des charges est un signe positif de maîtrise des coûts, ce qui peut améliorer la rentabilité.
+          Pour interpréter résultat d'exploitation négatif :
+          - Est-ce que le résultat d'exploitation a suivi la même tendance à la baisse du Chiffres d'affaires ?
+            interpretation: Une baisse simultanée du CA et du résultat d'exploitation peut indiquer une dégradation générale de la performance de l'entreprise.
+          - Est-ce que les charges d'exploitations ont augmenté ? De combien vs. N-1 ?
+            interpretation: Une augmentation des charges peut être préoccupante, surtout si elle n'est pas compensée par une augmentation des revenus.
+
+      - Résultat net:
+        - Le résultat net est-il positif ou négatif ?
+          interpretation: Un résultat net positif indique que l'entreprise est globalement rentable. Un résultat négatif montre des pertes, ce qui est préoccupant à long terme.
+        - Entre l'année N et N-1, le Résultat net est-il en baisse ? En augmentation ? Est-il stable ? De combien a-t-il évolué ?
+          interpretation: Une augmentation est un bon indicateur de performance et de rentabilité. Une baisse doit être analysée pour comprendre si elle est due à des facteurs temporaires ou structurels.
+        - La variation du Résultat net de l'année N par rapport à l'année N-1 est-elle cohérente avec la tendance observée au cours des trois dernières années ?
+          interpretation: Une cohérence avec les années précédentes est rassurante. Une divergence importante doit être expliquée par des événements spécifiques.
+        - Comment se porte le résultat net vs. celui du secteur ? vs. entreprises clientes de AWB du même secteur ?
+          interpretation: Un résultat net supérieur à la moyenne du secteur est un signe de bonne performance. Un résultat inférieur peut indiquer des problèmes compétitifs.
+
+      - Capacité d'autofinancement:
+        - La CAF est-elle positive ou négative ?
+          interpretation: Une CAF positive indique que l'entreprise génère suffisamment de ressources internes pour financer ses opérations. Une CAF négative montre une dépendance aux financements externes, ce qui peut être risqué.
+        - Entre l'année N et N-1, la CAF est-elle en baisse ? En augmentation ? Est-il stable ? De combien a-t-il évolué ?
+          interpretation: Une augmentation de la CAF est un bon indicateur de la santé financière de l'entreprise, montrant une meilleure capacité à générer des flux de trésorerie.
+        - La variation de la CAF de l'année N par rapport à l'année N-1 est-elle cohérente avec la tendance observée au cours des trois dernières années ?
+          interpretation: Une cohérence avec les années précédentes montre une gestion stable des flux de trésorerie. Une baisse importante pourrait indiquer un problème dans la gestion des opérations.
+          Cas d'une CAF positive :
+          - L'entreprise génère suffisamment de ressources internes pour couvrir ses besoins financiers.
+            interpretation: Une CAF positive reflète la capacité de l'entreprise à se financer sans avoir recours à des emprunts externes, ce qui est favorable.
+          Cas d'une CAF négative :
+          - La CAF négative est-elle liée aux pertes d'exploitation ? Est-elle liée à des charges d'exploitation ou des charges exceptionnelles trop élevées ?
+            interpretation: Une CAF négative peut résulter de pertes opérationnelles ou de charges exceptionnelles. Cela peut indiquer une dépendance accrue aux financements externes.
+
+      Si tu n'as pas les données pour répondre à une question, ne réponds pas. Mentionne les données manquantes dans la partie Questions supplémentaires (à part s'il s'agit des données sectorielles, si elles sont manquantes juste ne le mentionne pas du tout).
+      N'invente rien, base-toi uniquement sur les données fournies.
+      Mets bien dans la partie Questions supplémentaires toutes les informations qu'il te manque pour y répondre (à part s'il s'agit des données sectorielles, si elles sont manquantes juste ne le mentionne pas du tout). Exemple: tu n'as pas les coûts et les revenus pour pouvoir conclure sur la croissance du CA demande les et explique pourquoi.
+      Pour chaque comparaison avec une donnée sectorielle, mettez entre parenthèse le nombre de comparables utilisés pour le calcul de la moyenne sectorielle que ce soit un ratio ou une valeur. ex: (15 comparables)
+      Préciser le nombre de comparables utilisés pour le calcul de la moyenne sectorielle est très important car cela permet de donner une idée sur la fiabilité de la moyenne sectorielle.
+      Les unités sont les suivantes :
+        - Le chiffre d'affaires est en kDH
+        - Les Frais Financiers/CA sont en %
+        - Le résultat d'exploitation est en kDH
+        - Le résultat net est en kDH
+        - La capacité d'autofinancement (CAF) est en kDH
+      Le format que tu utiliseras pour les chiffres est le suivant : 1 000 kDH
+      Les pourcentages sont à écrire de la manière suivante : 10%
+    structure_output: >
+      La structure de la réponse est en trois grandes parties:
+      - Analyse : Pour chaque élément des résultats de calcul de l'analyse financière pour lequel vous avez les données, vous fournirez une phrase synthétique qui inclut (si la donnée est "NaN" ou manquante, ne créer pas te phrase):
+          - un commentaire sur la variation de l'élément entre l'année N et l'année N-1. Pour cette variation, comparez aux caractéristiques sectorielles. ex: Le chiffres d'affaires n'a augmenté que de 10% contrairement au secteur qui a augmenté de 20%.       Pour chaque comparaison avec une donnée sectorielle, mettez entre parenthèse le nombre de comparables utilisés pour le calcul de la moyenne sectorielle que ce soit un ratio ou une valeur. ex: (15 comparables)
+          - une réponse à la question posée en relation avec l'élément
+          - une justification de votre commentaire en vous basant sur les extraits du dossier client. Ne rien inventer, seulement s'appuyer sur des données. Si ces données ne sont pas disponibles, alors ne mentionnez rien. Vous devez essayer de justifier les variations de l'élément financier à partir d'autres éléments financiers dans le dossier client (pas dans les résultats intermédiaires). exemple : le Chiffres d'affaires a chuté surement à cause de ... et ....
+        Au sein de chaque élément, il ne devrait pas y avoir de séparation nette entre commentaire, réponse et justification ; il faut que ce soit intégré de manière fluide dans une phrase bien écrite.
+        Répondez à la question si et seulement si vous avez les données pour y répondre, sinon ne mentionne rien dans la partie Analyse. En revanche, mentionnez les données manquantes dans la partie Questions supplémentaires.
+      - Conclusion : Vous fournirez une conclusion détaillée sur l'activité et la rentabilité de l'entreprise, et de l'impact sur le dossier de crédit. La conclusion ne doit pas reprendre tous les points déjà mentionnés mais doit apporter une synthèse globale.
+      - Questions supplémentaires : En dernier, vous fournirez des questions en plus à poser à votre collègue banquier afin de compléter l'analyse financière, si celle-ci manque d'informations pour répondre aux questions. Citez les données qui manquent pour répondre aux questions. Aussi, mentionnes toutes les données manquantes dans l'extrait qui vous ait fourni (as tu les données pour toutes les années ? pour tous les indicateurs ?)  (à part s'il s'agit des données sectorielles, si elles sont manquantes juste ne le mentionne pas du tout).. Enfin, relève les données qui te paraissent douteuses.  Ne demandes jamais les données sectorielles.
+      Le format de la réponse doit être sous forme d'un markdown.
+      Les titres Analyse, Conclusion, Questions supplémentaires doivent être formatté de la manière suivante : #Analyse, #Conclusion, #Questions supplémentaires.
+  structure_financiere_comment_generation_tool:
+    use_sector_data: True
+    table_name: "analyse_financiere"
+    sub_table_name: "structure_financiere"
+    analysis_name: "structure financière"
+    questions: >
+      - Fonds de roulement (FDR):
+        - Quel est le montant du Fonds de Roulement (FDR) à l'année N et comment se compare-t-il à celui de l'année N-1 ?
+          interpretation: Un FDR en augmentation montre une meilleure capacité à financer les activités courantes de l'entreprise. Une baisse du FDR peut signaler des difficultés à maintenir un fonds suffisant pour les dépenses opérationnelles.
+        - Est-il positif ou négatif ?
+          Si FDR positif :
+            interpretation: Un FDR positif indique une bonne santé financière, l'entreprise dispose de suffisamment de ressources pour ses besoins quotidiens.
+          Si FDR négatif :
+            interpretation: Un FDR négatif est une alerte sur un manque de capitaux pour couvrir les besoins courants de l'entreprise, ce qui peut mener à des difficultés de liquidité.
+        - A combien s'élève le nombre de jours de financement du CA ?
+          interpretation: Le nombre de jours de financement du CA permet de mesurer l'efficacité de la gestion du fonds de roulement. Un nombre élevé de jours peut indiquer une gestion inefficace.
+        - Comment se porte le FDR vs. celui du secteur ? vs. entreprises clientes de AWB du même secteur ?
+          interpretation: Comparer le FDR avec celui du secteur permet de savoir si l'entreprise est mieux ou moins bien positionnée que ses concurrents en termes de gestion de son fonds de roulement.
+        - En cas de déséquilibre, analyse du financement des investissements par le CT
+          interpretation: Un déséquilibre peut signifier que les investissements sont financés par des dettes à court terme, ce qui peut générer des risques de liquidité.
+
+      - Besoin en Fonds de Roulement (BFDR):
+        - Quel est le montant du Besoin en Fonds de Roulement (BFDR) à l'année N et comment se compare-t-il à celui de l'année N-1 ?
+          interpretation: Une augmentation du BFDR indique que l'entreprise a besoin de plus de liquidités pour financer son cycle d'exploitation. Une baisse signifie que l'entreprise est capable de financer ses besoins à court terme plus facilement.
+        - Est-il positif ou négatif ?
+          Si BFDR positif :
+            interpretation: Un BFDR positif montre un besoin en liquidités, l'entreprise doit trouver des financements pour ses besoins à court terme.
+          Si BFDR négatif :
+            interpretation: Un BFDR négatif indique que l'entreprise n'a pas besoin de financement externe pour couvrir son cycle d'exploitation, ce qui est généralement un signe de bonne santé financière.
+        - Pour analyser la variation : analyse des CCA NB et des stocks
+          interpretation: Une analyse des comptes clients et des stocks permet de comprendre les variations du BFDR, car ces éléments impactent directement les besoins en liquidités.
+        - Quelle proportion du Besoin en Fonds de Roulement (BFDR) est couverte par le FDR ? vs. le secteur, vs. entreprises AWB clientes du même secteur
+          interpretation: La couverture du BFDR par le FDR montre si l'entreprise est capable de financer ses besoins d'exploitation avec ses propres ressources. Une faible couverture peut indiquer un besoin d'emprunt.
+
+      - Trésorerie nette:
+        - Quel est le montant de la trésorerie nette à l'année N et comment se compare-t-elle à celui de l'année N-1 ?
+          interpretation: Une augmentation de la trésorerie nette montre que l'entreprise dispose de plus de liquidités, ce qui est un signe positif. Une diminution peut signaler des dépenses importantes ou une baisse des liquidités disponibles.
+        - Est-elle positive ou négative ?
+          interpretation: Une trésorerie nette positive est signe de bonne gestion des liquidités, tandis qu'une trésorerie nette négative peut poser des problèmes de liquidité.
+
+      - Fonds propres nets:
+        - Entre l'année N et N-1, les fonds propres nets sont-ils en baisse ? En augmentation ? Sont-ils stables ? De combien ont-ils évolué ?
+          interpretation: Une augmentation des fonds propres nets est un bon indicateur de solidité financière. Une baisse peut être préoccupante, surtout si elle est due à des pertes répétées.
+        - En cas de fonds propres nets négatifs :
+          interpretation: Des fonds propres nets négatifs montrent que l'entreprise a accumulé plus de pertes que d'actifs, et des actions correctives sont nécessaires pour éviter des difficultés financières à long terme.
+
+      - Endettement:
+        - Quels types de dettes l'entreprise a-t-elle à court terme et à moyen terme ?
+          interpretation: L'analyse des types de dettes permet de comprendre les obligations de l'entreprise et sa capacité à rembourser ses emprunts.
+        - Quels sont les engagements financiers actuels avec la banque, et quelle est la proportion de la ligne de crédit utilisée ?
+          interpretation: Une utilisation élevée de la ligne de crédit peut indiquer une forte dépendance aux financements bancaires, ce qui peut être risqué si l'entreprise ne parvient pas à rembourser.
+        - Quelle est la proportion de ces dettes du total bilan (EB/TB, il s'agit du champ eb_tb_year_n, eb_tb_year_n_1, eb_tb_year_n_2) ?
+          - Si EB/TB > la norme du secteur : L'entreprise est plus endettée que ses concurrents, ce qui pourrait être un signe de risque accru
+            interpretation: Un EB/TB supérieur à la norme du secteur signifie que l'entreprise est fortement endettée par rapport à ses concurrents, ce qui pourrait la rendre plus vulnérable en cas de difficultés financières.
+          - Si EB/TB < la norme du secteur : L'entreprise est moins endettée que ses concurrents, ce qui pourrait être un signe de gestion prudente
+            interpretation: Un EB/TB inférieur indique une gestion prudente de l'endettement, ce qui peut offrir une flexibilité financière en cas de besoin.
+        - Comment le ratio se compare-t-il avec celui des entreprises clientes AWB du même secteur ?
+          interpretation: Comparer le ratio d'endettement avec celui des entreprises similaires permet de juger si l'entreprise gère bien son niveau d'endettement par rapport à ses concurrents.
+        - A combien s'élève le ratio Endettement/EBE ?
+          - Si Ratio entre 1 à 3 ans = ratio faible : Un ratio faible indique que l'entreprise génère suffisamment de cash-flow pour rembourser sa dette rapidement, ce qui est généralement perçu comme un signe de bonne santé financière.
+            interpretation: Un ratio faible montre une capacité rapide à rembourser les dettes, ce qui est un bon signe de gestion financière.
+          - Si Ratio entre 3 à 5 ans = ratio modéré : Un ratio dans cette fourchette peut signifier une gestion de l'endettement acceptable. Cela montre que l'entreprise a une capacité raisonnable à rembourser sa dette tout en continuant à investir.
+            interpretation: Un ratio modéré indique que l'entreprise gère son endettement de manière équilibrée, tout en laissant de la place pour des investissements futurs.
+          - Si Ratio égale plus de 5 ans = ratio élevé : Un ratio élevé peut signaler un risque financier, suggérant que l'entreprise pourrait rencontrer des difficultés pour rembourser ses dettes uniquement à partir de ses résultats d'exploitation.
+            interpretation: Un ratio élevé est préoccupant car cela signifie que l'entreprise pourrait avoir du mal à rembourser ses dettes uniquement avec ses revenus opérationnels.
+        - Y a-t-il des dettes à moyen terme (MLT) qui ont été converties en dettes à court terme ? Analyser les consolidations/incidents avec d'autres banques
+          interpretation: Convertir des dettes à moyen terme en dettes à court terme peut indiquer des difficultés financières, nécessitant une analyse approfondie.
+        - Y a-t-il des dettes à court terme (CT) qui ont été converties en dettes à moyen ou long terme ?
+          interpretation: Cela peut indiquer une stratégie pour alléger les contraintes de liquidité à court terme, mais peut aussi cacher des difficultés de paiement à court terme.
+        - Pour les clients engagés, alerte en cas d'endettement nul :
+          1/ Revoir si saisie erronée
+          2/ Questionnement sur la fiabilité et qualité des données financières impactant directement le Rating de la relation
+          interpretation: L'absence de dette dans les systèmes peut révéler une erreur de saisie ou des données peu fiables, nécessitant une révision.
+
+      - Clients/CA (jours):
+        - A combien s'élèvent les créances clients de l'année N ? Comment ont-ils évolué entre l'année N et l'année N-1 ?
+          interpretation: Des créances clients élevées peuvent indiquer des retards de paiement, ce qui affecte la trésorerie de l'entreprise.
+        - Quel est le délai de recouvrement des créances client ? Comment a-t-il évolué entre l'année N et l'année N-1 ? Comment se compare-t-il aux normes du secteurs ? => Alerte en cas de Délais CLTS > 180 J et exigence de production de la balance âgée
+          interpretation: Un délai de recouvrement plus long que la norme du secteur peut signaler des problèmes de gestion des comptes clients ou une dépendance à des clients qui paient tardivement.
+        - Concentration > 30% analyse des données fournisseurs et l'évolution du Client en question
+          interpretation: Une concentration élevée des créances chez un seul client peut poser un risque financier important si ce client venait à ne pas honorer ses paiements.
+        - Analyse en cas de transactions intraGroupe avec rapprochement si affaire domiciliée
+          interpretation: Les transactions intra-groupe peuvent être utilisées pour optimiser la gestion des flux financiers, mais doivent être surveillées pour éviter des transferts de fonds risqués.
+        - Comment le ratio se compare-t-il avec celui du secteur vs. celui des entreprises clientes AWB du même secteur ?
+          interpretation: Comparer le délai de recouvrement avec celui des autres entreprises permet de juger si l'entreprise gère efficacement ses créances clients.
+
+      - Fournisseurs/Achats (jours):
+        - A combien s'élèvent les dettes fournisseurs de l'année N ? Comment ont-ils évolué entre l'année N et l'année N-1 ?
+          interpretation: Une augmentation des dettes fournisseurs peut indiquer que l'entreprise a plus de difficultés à payer ses fournisseurs, ce qui peut être un signal d'alerte.
+        - Quel est le délai de paiement des dettes fournisseurs ? Comment a-t-il évolué entre l'année N et l'année N-1 ? Comment se compare-t-il aux normes du secteurs ? => Alerte en cas de Délais FRS > 180 J et exigence de production de la balance âgée
+          interpretation: Des délais de paiement plus longs que la norme du secteur peuvent être un signe de tensions de trésorerie ou d'une gestion inefficace des dettes fournisseurs.
+        - Concentration sur l'analyse des données fournisseurs et l'évolution du fournisseur en question
+          interpretation: Une concentration des dettes sur un nombre limité de fournisseurs peut exposer l'entreprise à des risques en cas de rupture de ces relations.
+        - Analyse en cas de transactions intra-groupe avec rapprochement si affaire domiciliée
+          interpretation: Les transactions intra-groupe doivent être surveillées pour garantir qu'elles sont effectuées dans les meilleures conditions financières possibles.
+        - Comment le ratio se compare-t-il avec celui du secteur vs. celui des entreprises clientes AWB du même secteur ?
+          interpretation: Un délai de paiement des fournisseurs supérieur à la norme peut indiquer des problèmes de gestion de trésorerie, tandis qu'un délai inférieur montre une gestion plus efficace.
+
+      Si tu n'as pas les données pour y répondre, ne réponds pas.
+      N'invente rien, base-toi uniquement sur les données fournies.
+      En revanche mets bien dans la partie Questions supplémentaires toutes les informations qu'il te manque pour y répondre (à part s'il s'agit des données sectorielles, si elles sont manquantes juste ne le mentionne pas du tout).. Exemple: tu n'as pas les créances clients, demande les et explique pourquoi tu en as besoin.
+      Pour chaque comparaison avec une donnée sectorielle, mettez entre parenthèse le nombre de comparables utilisés pour le calcul de la moyenne sectorielle que ce soit un ratio ou une valeur. ex: (15 comparables)
+      Préciser le nombre de comparables utilisés pour le calcul de la moyenne sectorielle est très important car cela permet de donner une idée sur la fiabilité de la moyenne sectorielle.
+      Les unités sont les suivantes :
+         - Le Capital est en kDH
+         - Le FDR est en kDH
+         - Le BFDR est en kDH
+         - La trésorerie nette est en kDH
+         - Les fonds propres nets sont en kDH
+         - L'endettement est en kDH
+         - le MLT est en kDH
+         - le CT est en kDH
+         - Le total Bilan est en kDH
+         - Le FPN/TB est en %
+         - Le EB/TB est en %
+         - Le DLMT/KP est en %
+         - Le CCA NB est en kDH
+         - Le Clients/CA est en jours
+         - Le Fournisseurs/Achats est en jours
+      Le format que tu utiliseras pour les chiffres est le suivant : 1 000 kDH
+      Les pourcentages sont à écrire de la manière suivante : 10%
+      Les jours sont à écrire de la manière suivante : 10 jours
+    structure_output: >
+      La structure de la réponse est en trois grandes parties:
+      - Analyse : Pour chaque élément des résultats de calcul de l'analyse financière pour lequel vous avez les données, vous fournirez une phrase synthétique qui inclut (si la donnée est "NaN" ou manquante, ne créer pas te phrase):
+            - un commentaire sur la variation de l'élément entre l'année N et l'année N-1. Pour cette variation, comparez aux caractéristiques sectorielles.       Pour chaque comparaison avec une donnée sectorielle, mettez entre parenthèse le nombre de comparables utilisés pour le calcul de la moyenne sectorielle que ce soit un ratio ou une valeur. ex: (15 comparables)
+            - une réponse à la question posée en relation avec l'élément
+            - une justification de votre commentaire en vous basant sur les extraits du dossier client.
+            Ne rien inventer, seulement s'appuyer sur des données.
+            Si ces données ne sont pas disponibles, alors ne mentionnez rien.
+          Vous devez essayer de justifier les variations de l'élément financier à partir d'autres éléments financiers dans le dossier client (pas dans les résultats intermédiaires).
+          Au sein de chaque élément, il ne devrait pas y avoir de séparation nette entre commentaire, réponse et justification ; il faut que ce soit intégré de manière fluide dans une phrase bien écrite.
+        Répondez à la question si et seulement si vous avez les données pour y répondre, sinon ne mentionne rien dans la partie Analyse. En revanche, mentionnez les données manquantes dans la partie Questions supplémentaires.
+      - Conclusion : Vous fournirez une conclusion sur la structure financière de l'entreprise, et de l'impact sur le dossier de crédit. La conclusion ne doit pas reprendre tous les points déjà mentionnés mais doit apporter une synthèse globale.
+      - Questions supplémentaires : En dernier, vous fournirez des questions en plus à poser à votre collègue banquier afin de compléter l'analyse financière, si celle-ci manque d'informations pour répondre aux questions. Citez les données qui manquent pour répondre aux questions. Aussi, mentionnes toutes les données manquantes dans l'extrait qui vous ait fourni (as tu les données pour toutes les années ? pour tous les indicateurs ?)  (à part s'il s'agit des données sectorielles, si elles sont manquantes juste ne le mentionne pas du tout).. Enfin, relève les données qui te paraissent douteuses.  Ne demandes jamais les données sectorielles.
+      Le format de la réponse doit être sous forme d'un markdown.
+      Les titres Analyse, Conclusion, Questions supplémentaires doivent être formatté de la manière suivante : #Analyse, #Conclusion, #Questions supplémentaires.
+  actif_passif_comment_generation_tool:
+    table_name: "analyse_financiere"
+    sub_table_name: "actif_passif_n"
+    analysis_name: "actif et passif"
+    questions: >
+      - A quel encours correspondent les dettes bancaires CT et MLT (si client existant) ?
+      Si tu n'as pas les données pour y répondre, ne réponds pas.
+      N'invente rien, base-toi uniquement sur les données fournies.
+      En revanche mets bien dans la partie Questions supplémentaires toutes les informations qu'il te manque pour y répondre (à part s'il s'agit des données sectorielles, si elles sont manquantes juste ne le mentionne pas du tout).. Exemple: tu n'as pas les dettes bancaires, demande les et explique pourquoi tu en as besoin. Ne demande jamais les données sectorielles.
+      Les unités sont les suivantes :
+        - Les dettes bancaires MLT sont en kDH
+        - Les dettes bancaires CT sont en kDH
+    structure_output: >
+      La structure de la réponse est en deux grandes parties:
+      - Analyse : Pour chaque élément des résultats de calcul de l'analyse financière pour lequel vous avez les données, vous fournirez une phrase synthétique qui inclut (si la donnée est "NaN" ou manquante, ne créer pas te phrase):
+            - un commentaire sur la valeur de l'élément.
+            - une réponse à la question posée en relation avec l'élément
+            - une justification de votre commentaire
+            Ne rien inventer, seulement s'appuyer sur des données.
+            Si ces données ne sont pas disponibles, alors ne mentionnez rien.
+          Au sein de chaque élément, il ne devrait pas y avoir de séparation nette entre commentaire, réponse et justification ; il faut que ce soit intégré de manière fluide dans une phrase bien écrite.
+        Répondez à la question si et seulement si vous avez les données pour y répondre, sinon ne mentionne rien dans la partie Analyse. En revanche, mentionnez les données manquantes dans la partie Questions supplémentaires.
+      - Questions supplémentaires : En dernier, vous fournirez des questions en plus à poser à votre collègue banquier  afin de compléter l'analyse financière, si celle-ci manque d'informations pour répondre aux questions  (à part s'il s'agit des données sectorielles, si elles sont manquantes juste ne le mentionne pas du tout) . Citez les données qui manquent pour répondre aux questions. Aussi, mentionnes toutes les données manquantes dans l'extrait qui vous ait fourni  (à part s'il s'agit des données sectorielles, si elles sont manquantes juste ne le mentionne pas du tout).. Enfin, relève les données qui te paraissent douteuses. Ne demandes jamais les données sectorielles.
+      Le format de la réponse doit être sous forme d'un markdown.
+      Les titres Analyse, Questions supplémentaires doivent être formatté de la manière suivante : #Analyse, #Questions supplémentaires.
+  garanties_mouvements_confies_comment_generation_tool:
+    garanties_years: True
+    table_name: "etat_relation_garanties"
+    sub_table_name: "mouvements_confies_net"
+    analysis_name: "Etat de la relation et des garanties mouvements confiés nets"
+    questions: >
+      - A combien s'élève le total mouvement au crédit que notre relation a confié à la banque ?
+      - Combien cela représente en pourcentage du Chiffres d'affaires ?
+        - Si la banque couvre >=80% du CA de l'entreprise, AWB demeure le principal partenaire financier.
+        - Comment ce pourcentage a évolué lors de 3 dernières années ?
+        - Est-ce que la banque domicilie un autre compte, d'une affaire soeur par exemple ?
+      Si tu n'as pas les données pour y répondre, ne réponds pas.
+      En revanche mets bien dans la partie Questions supplémentaires toutes les informations qu'il te manque pour y répondre (à part s'il s'agit des données sectorielles, si elles sont manquantes juste ne le mentionne pas du tout).. Exemple: tu n'as pas le % du total des mouvements crédits par rapport au chiffres d'affiares, demande le et explique pourquoi tu en as besoin.
+      N'invente rien, base-toi uniquement sur les données fournies.
+      Toutes les unités sont en kDH et doivent être formatter de la manière 10 000 kDH à part pour les pourcentages qui sont à écrire de la manière suivante : 10%
+    structure_output: >
+      La structure de la réponse est en deux grandes parties:
+      - Analyse : Pour chaque question à laquelle vous avez la réponse, vous fournirez une phrase synthétique qui inclut (si la donnée est "NaN" ou manquante, ne créer pas te phrase):
+            - une réponse à la question posée, en relation avec l'élément financier fourni
+            - une justification de votre commentaire
+            Ne rien inventer, seulement s'appuyer sur des données.
+            Si ces données ne sont pas disponibles, alors ne mentionnez rien.
+          Au sein de chaque élément, il ne devrait pas y avoir de séparation nette entre commentaire, réponse et justification ; il faut que ce soit intégré de manière fluide dans une phrase bien écrite.
+        Répondez à la question si et seulement si vous avez les données pour y répondre, sinon ne mentionne rien dans la partie Analyse. En revanche, mentionnez les données manquantes dans la partie Questions supplémentaires.
+      - Questions supplémentaires : En dernier, vous fournirez des questions en plus à poser à votre collègue banquier  afin de compléter l'analyse, si celle-ci manque d'informations pour répondre aux questions. Citez les données qui manquent pour répondre aux questions.  Ne demandes jamais les données sectorielles.
+      Le format de la réponse doit être sous forme d'un markdown.
+      Les titres Analyse, Questions supplémentaires doivent être formatté de la manière suivante : #Analyse, #Questions supplémentaires.
+  garanties_mouvements_international_comment_generation_tool:
+    garanties_years: True
+    table_name: "etat_relation_garanties"
+    sub_table_name: "mouvements_internationaux"
+    analysis_name: "Etat de la relation et des garanties mouvements internationaux"
+    questions: >
+      - Si les mouvements à l'import et à l'export sont égaux à 0 pour l'année N, N-1 et N-2, cela signifie qu'il n'y a pas eu d'opérations à l'international.
+        interpretation:
+          - Import: L'absence de mouvements à l'import sur plusieurs années peut indiquer que l'entreprise s'approvisionne uniquement via des sources locales, n'ayant pas besoin de matières premières ou de produits en provenance de l'étranger. Cela peut refléter une stratégie visant à réduire la dépendance envers les marchés internationaux pour l'approvisionnement.
+          - Export: L'absence de mouvements à l'export pendant plusieurs années suggère que l'entreprise n'a pas de débouchés internationaux ou qu'elle a choisi de se concentrer exclusivement sur le marché domestique. Cela peut être une décision stratégique pour éviter les risques liés aux marchés étrangers, ou un indicateur de manque d'opportunités sur ces marchés.
+
+      - Si des opérations internationales existent :
+        - De combien ont évolué les mouvements à l'import sur les années N, N-1 et N-2 ?
+          interpretation: Une augmentation des mouvements à l'import indique que l'entreprise a accru ses besoins en matières premières ou en équipements étrangers, signe d'une hausse de la production ou d'une expansion des activités. Une baisse, en revanche, peut signaler une réduction des achats internationaux due à une moindre demande, à une réduction de la production ou à une meilleure capacité à s'approvisionner localement.
+
+        - De combien ont évolué les mouvements à l'export sur les années N, N-1 et N-2 ?
+          interpretation: Une augmentation des exportations est un signe positif montrant que l'entreprise renforce sa présence sur les marchés internationaux, augmentant ainsi ses ventes à l'étranger. À l'inverse, une baisse des exportations peut indiquer des difficultés à maintenir la compétitivité internationale, une demande en baisse à l'étranger, ou des barrières commerciales rendant les exportations plus difficiles.
+
+        - Les mouvements à l'import et à l'export ont-ils suivi la même tendance ?
+          interpretation:
+            - Si les tendances à l'import et à l'export sont alignées (par exemple, toutes deux en augmentation), cela peut indiquer une croissance harmonieuse des activités internationales, où les besoins d'approvisionnement (import) suivent la demande étrangère (export). Une telle synchronisation suggère que l'entreprise ajuste bien ses opérations internationales.
+            - Si l'import augmente et l'export diminue, cela pourrait signaler un excès d'approvisionnement ou une difficulté à écouler la production sur les marchés étrangers, ce qui peut entraîner des surstocks ou une baisse de la rentabilité. Si l'import diminue et que l'export augmente, cela peut indiquer une meilleure efficience dans l'utilisation des ressources locales ou une capacité à maintenir la production avec moins de dépendance aux matières premières étrangères, tout en augmentant les ventes à l'étranger.
+
+      Si tu n'as pas les données pour y répondre, ne réponds pas.
+      N'invente rien, base-toi uniquement sur les données fournies.
+      En revanche mets bien dans la partie Questions supplémentaires toutes les informations qu'il te manque pour y répondre (à part s'il s'agit des données sectorielles, si elles sont manquantes juste ne le mentionne pas du tout).. Exemple: tu n'as pas les mouvements à l'export, demande les et explique pourquoi tu en as besoin.
+      Toutes les unités sont en kDH et doivent être formatter de la manière 10 000 kDH à part pour les pourcentages (variations) qui sont à écrire de la manière suivante : 10%
+    structure_output: >
+      La structure de la réponse est en deux grandes parties:
+      - Analyse : Pour chaque question à laquelle vous avez la réponse, vous fournirez une phrase synthétique qui inclut (si la donnée est "NaN" ou manquante, ne créer pas te phrase):
+            - une réponse à la question posée, en relation avec l'élément financier fourni
+            - une justification de votre commentaire
+            Ne rien inventer, seulement s'appuyer sur des données.
+            Si ces données ne sont pas disponibles, alors ne mentionnez rien.
+          Au sein de chaque élément, il ne devrait pas y avoir de séparation nette entre commentaire, réponse et justification ; il faut que ce soit intégré de manière fluide dans une phrase bien écrite.
+        Répondez à la question si et seulement si vous avez les données pour y répondre, sinon ne mentionne rien dans la partie Analyse. En revanche, mentionnez les données manquantes dans la partie Questions supplémentaires.
+      - Questions supplémentaires : En dernier, vous fournirez des questions en plus à poser à votre collègue banquier  afin de compléter l'analyse, si celle-ci manque d'informations pour répondre aux questions. Citez les données qui manquent pour répondre aux questions.  Ne demandes jamais les données sectorielles.
+      Le format de la réponse doit être sous forme d'un markdown.
+      Les titres Analyse, Questions supplémentaires doivent être formatté de la manière suivante : #Analyse, #Questions supplémentaires.
+  objet_demande_comment_generation_tool:
+    table_name: objet_demande
+    analysis_name: "objet de la demande"
+    questions: >
+        - Pourquoi le client (ou "la relation") sollicite la banque ?
+        - Quel est le montant de la ligne sollicitée (des lignes sollicitées) ?
+        - Avec quel taux de remboursement ?
+        - Avec quelle échéance ?
+        Si tu n'as pas les données pour y répondre, ne réponds pas.
+        N'invente rien, base-toi uniquement sur les données fournies.
+        Le montant de la ligne sollicitée doit être formatter de la manière suivante : 1 000 kDH (si l'unite est en kDH) ou 1 000 000 MAD (si l'unite est en MAD)
+    structure_output: >
+      La structure de la réponse est formée de titres soit Besoin/Demande , ou RPS (Renouvèlement Pur et Simple), ou Extension ou Réduction ou Suppression , selon le type de la demande.
+      - Exemple de formes acceptées :
+        • Extension :
+          • Cautions de 1 500 000,00 MAD à 1 900 000,00 MAD.
+          • Ligne de crédit portée de 2 000 000 MAD à 3 000 000 MAD avec échéance prolongée de 12 mois à 24 mois.
+        • Besoin/Demande de :
+          • Facilité de caisse de 6 000 000 MAD.
+          • Escompte de 10 000 000 MAD.
+          • Escompte en faveur de SGTM de 30 000 000 MAD.
+          • Cautions de 15 000 000 MAD.
+        • RPS (Renouvellement pur et simple) :
+          • Renouvellement d’une ligne de crédit de 1 000 000 MAD pour une durée de 12 mois.
+          • Renouvellement de facilité de caisse à hauteur de 5 000 000 MAD.
+        • Réduction :
+          • Ligne de crédit réduite de 2 000 000 MAD à 1 500 000 MAD.
+          • Cautions diminuées de 10 000 000 MAD à 8 000 000 MAD.
+        • Suppression :
+          • Suppression de la facilité de caisse de 1 000 000 MAD.
+          • Annulation d’une ligne de caution de 500 000 MAD.
+      Ne rien inventer, seulement s'appuyer sur des données.
+      Si aucune donnée n'est disponible, ne mentionnez rien. 
+      Les titres doivent être précédé par un bullet et formatté de la manière suivante : • Extension • Besoin/Demande de • RPS (Renouvellement pur et simple) • Réduction • Suppression 
+  executive_summary_comment_generation_tool:
+    table_name: "all"
+    analysis_name: "executive summary"
+    questions: >
+      En quelques lignes, effectue une synthèse des différents commentaires et données en répondant aux questions suivantes :
+
+      - Quels sont les points forts de la relation et de la demande ?
+        - Le client présente-t-il des avantages notables (ex, ancienneté de la relation, solidité financière) ?
+        - vs. le secteur ? vs. la moyenne sectorielle interne (Clients AWB du même secteur) ?
+
+      - Quels sont les points faibles de la relation et de la demande ?
+        - Le client a-t-il des postes alarmants dans ses états de synthèse ? vs. le secteur ? vs. la moyenne sectorielle interne (Clients AWB du même secteur)?
+
+      - Quels sont les autres points d'aide à la décision ?
+        - AWB est-elle le principal bénéficiaire des mouvements client ?
+        - AWB est-elle très exposée (+X% des dettes chez AWB) ?
+        - Le client a-t-il des autorisations non utilisées ?
+
+      - Quels points d’alerte, s’il y en a, doivent être remontés aux autres entités concernant la relation ?
+      Si tu n'as pas les données pour y répondre, ne réponds pas.
+      N'invente rien, base-toi uniquement sur les données fournies.
+      Veuillez utiliser le format suivant pour les chiffres : 1 000 kDH (si l'unite est en kDH) ou 1 000 000 MAD (si l'unite est en MAD)
+    structure_output: >
+      La structure de la réponse est en 4 grandes parties: Points forts, Points faibles, Autres points d'aide à la décision, Points d'alerte.
+        Pour chaque question à laquelle vous avez la réponse, vous fournirez une phrase synthétique qui inclut (si la donnée est "NaN" ou manquante, ne créer pas te phrase):
+            - une réponse à la question posée
+            - une justification de votre commentaire
+            Ne rien inventer, seulement s'appuyer sur des données.
+            Si ces données ne sont pas disponibles, alors ne mentionnez rien.
+            Au sein de chaque élément, il ne devrait pas y avoir de séparation nette entre commentaire, réponse et justification ; il faut que ce soit intégré de manière fluide dans une phrase bien écrite.
+            Répondez à la question si et seulement si vous avez les données pour y répondre, sinon ne mentionne rien.
+      Le format de la réponse doit être sous forme d'un markdown.
+      Ne pose pas de questions supplémentaires.
+      Les titres Points forts, Points faibles, Autres points d'aide à la décision, Points d'alerte doivent être formatté de la manière suivante : #Points forts, #Points faibles, #Autres points d'aide à la décision, #Points d'alerte.
+  etat_autorisations_utilisations_comment_generation_tool:
+    table_name: "etat_autorisations_utilisations"
+    analysis_name: "Etat des autorisations et utilisations"
+    questions: >
+      - Quel est le taux moyen d'utilisation des lignes ?
+      - Y a-t-il actuellement des dépassements (utilisation supérieur à autorisation)? Des cas d'utilisation non autorisée des lignes ?
+      - Qu'en est-il de l'utilisation des lignes auprès des confrères ? AWB est-elle très exposée vs. confrères (% des dettes AWB vs. total)?
+      Si tu n'as pas les données pour y répondre, ne réponds pas.
+      N'invente rien, base-toi uniquement sur les données fournies.
+      En revanche mets bien dans la partie Questions supplémentaires toutes les informations qu'il te manque pour y répondre (à part s'il s'agit des données sectorielles, si elles sont manquantes juste ne le mentionne pas du tout).. Exemple: tu n'as pas le % des dettes AWB vs le total, demande le et explique pourquoi tu en as besoin.
+      Les chiffres sont en kDH et doivent être formatter de la manière 10 000 kDH.
+    structure_output: >
+      La structure de la réponse est en deux grandes parties:
+      - Analyse : Pour chaque question à laquelle vous avez la réponse grâce aux documents fournis, vous fournirez une phrase synthétique qui inclut (si la donnée est "NaN" ou manquante, ne créer pas te phrase):
+            - une réponse à la question posée, en relation avec l'élément financier fourni
+            - une justification de votre commentaire
+            Ne rien inventer, seulement s'appuyer sur des données.
+            Si ces données ne sont pas disponibles, alors ne mentionnez rien.
+          Au sein de chaque élément, il ne devrait pas y avoir de séparation nette entre commentaire, réponse et justification ; il faut que ce soit intégré de manière fluide dans une phrase bien écrite.
+        Répondez à la question si et seulement si vous avez les données pour y répondre, sinon ne mentionne rien dans la partie Analyse. En revanche, mentionnez les données manquantes dans la partie Questions supplémentaires.
+      - Questions supplémentaires : En dernier, vous fournirez des questions en plus à poser à votre collègue banquier  afin de compléter l'analyse, si celle-ci manque d'informations pour répondre aux questions. Citez les données qui manquent pour répondre aux questions.  Ne demandes jamais les données sectorielles.
+      Le format de la réponse doit être sous forme d'un markdown.
+      Les titres Analyse, Questions supplémentaires doivent être formatté de la manière suivante : #Analyse, #Questions supplémentaires.
